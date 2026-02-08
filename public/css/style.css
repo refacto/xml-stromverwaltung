@@ -1,0 +1,42 @@
+body {
+  font-family: sans-serif;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 0 20px;
+  background-color: #f4f4f4;
+}
+
+header {
+  background: #333;
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+}
+
+main {
+  background: #fff;
+  padding: 20px;
+  margin-top: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.actions {
+  margin: 20px 0;
+}
+
+button {
+  padding: 10px 20px;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+iframe {
+  border: 1pt solid #ccc;
+  margin-top: 10px;
+}

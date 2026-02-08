@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<enercheck>
+  <item id="1">
+    <name>General Energy Check</name>
+    <history>
+      <entry date="2026-02-08">Initial Setup</entry>
+    </history>
+  </item>
+</enercheck>
