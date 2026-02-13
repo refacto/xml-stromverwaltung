@@ -9,7 +9,11 @@
     <div id="content">
       <p id="description">Welcome to EnerCheck. A barebones XML/XSLT/FO baseline.</p>
       <div id="actions">
-        <button id="pdf">Generate PDF Report</button>
+        <button id="pdf" onclick="createPdf()">Generate PDF Report</button>
+      </div>
+
+      <div id="dashboard-mount">
+        Loading dashboard...
       </div>
     </div>
   </body>

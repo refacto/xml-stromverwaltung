@@ -4,6 +4,32 @@ async function loadXMLDoc(filename) {
     return new DOMParser().parseFromString(text, "application/xml");
 }
 
+// Render the database XML into XHTML using XSLT and inject into the page
+async function renderDashboard() {
+    try {
+        const dbXml = await loadXMLDoc('/data/database.xml');
+        const xsl = await loadXMLDoc('xsl/dashboard.xsl');
+
+        const xsltProcessor = new XSLTProcessor();
+        xsltProcessor.importStylesheet(xsl);
+
+        const fragment = xsltProcessor.transformToFragment(dbXml, document);
+
+        const mount = document.getElementById('dashboard-mount');
+        if (!mount) {
+            console.warn('No #dashboard-mount element found.');
+            return;
+        }
+
+        mount.innerHTML = '';
+        mount.appendChild(fragment);
+    } catch (error) {
+        console.error('Error rendering dashboard:', error);
+        const mount = document.getElementById('dashboard-mount');
+        if (mount) mount.textContent = 'Failed to render dashboard. See console.';
+    }
+}
+
 async function createPdf() {
     console.log("Generating PDF...");
     try {
@@ -48,3 +74,8 @@ async function createPdf() {
         alert('An error occurred during PDF creation.');
     }
 }
+
+// Load the dashboard as soon as the page is ready
+window.addEventListener('DOMContentLoaded', () => {
+    renderDashboard();
+});

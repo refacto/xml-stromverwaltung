@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+        "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>EnerCheck – Landing</title>
+        <link rel="stylesheet" href="/css/style.css" />
+    </head>
+
+    <body>
+        <div class="header">
+            <h1>Lieferanten</h1>
+
+            <div class="nav">
+                <a href="/">Landing</a>
+                <a href="/lieferanten">Lieferanten</a>
+                <a href="/kunden">Kunden</a>
+                <a href="/forum">Forum</a>
+            </div>
+        </div>
+
+        <div class="main">
+            <h2>Lieferanten</h2>
+            <p>Welcome! Choose a section using the navigation above.</p>
+
+            <div class="actions">
+                <button onclick="createPdf()">Generate PDF</button>
+            </div>
+
+            <div id="dashboard-mount">Loading dashboard...</div>
+        </div>
+
+        <script type="text/javascript" src="/js/app.js"></script>
+    </body>
+</html>

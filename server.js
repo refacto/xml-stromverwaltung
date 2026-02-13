@@ -29,7 +29,22 @@ const sendXmlResponse = (res, status, message, data = null) => {
 // Main route
 app.get('/', (req, res) => {
     res.set('Content-Type', 'application/xhtml+xml');
-    res.sendFile(path.resolve(__dirname, 'public', 'index.xml'));
+    res.sendFile(path.resolve(__dirname, 'public', 'pages', 'landing.xml'));
+});
+
+app.get('/lieferanten', (req, res) => {
+    res.set('Content-Type', 'application/xhtml+xml');
+    res.sendFile(path.resolve(__dirname, 'public', 'pages', 'lieferanten.xml'));
+});
+
+app.get('/kunden', (req, res) => {
+    res.set('Content-Type', 'application/xhtml+xml');
+    res.sendFile(path.resolve(__dirname, 'public', 'pages', 'kunden.xml'));
+});
+
+app.get('/forum', (req, res) => {
+    res.set('Content-Type', 'application/xhtml+xml');
+    res.sendFile(path.resolve(__dirname, 'public', 'pages', 'forum.xml'));
 });
 
 app.post('/convertToPdf', async (req, res) => {
