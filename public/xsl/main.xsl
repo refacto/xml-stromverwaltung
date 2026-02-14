@@ -23,7 +23,8 @@
           <p><xsl:value-of select="xhtml:body/xhtml:div[@id='content']/xhtml:p[@id='description']" /></p>
           
           <div class="actions">
-            <button onclick="createPdf()">PDF generieren</button>
+            <button onclick="createPdf()" class="button-link">PDF generieren</button>
+            <a href="charts.xml" class="button-link">Preisdiagramme anzeigen</a>
           </div>
 
           <section id="data-preview">

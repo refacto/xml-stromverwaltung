@@ -24,15 +24,22 @@ main {
   margin: 20px 0;
 }
 
-button {
+button, .button-link {
   padding: 10px 20px;
   background: #007bff;
   color: #fff;
   border: none;
   cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+  vertical-align: middle;
 }
 
-button:hover {
+button:hover, .button-link:hover {
   background: #0056b3;
 }
 
