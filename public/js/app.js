@@ -5,7 +5,7 @@ async function loadXMLDoc(filename) {
 }
 
 async function createPdf() {
-    console.log("Generating PDF...");
+    console.log("PDF wird generiert...");
     try {
         // Load data and stylesheet
         const dbXml = await loadXMLDoc('../data/database.xml');
@@ -40,11 +40,11 @@ async function createPdf() {
             window.URL.revokeObjectURL(url);
             document.body.removeChild(link);
         } else {
-            console.error('Failed to generate PDF', await response.text());
-            alert('PDF generation failed. See console for details.');
+            console.error('PDF konnte nicht generiert werden: ', await response.text());
+            alert('Das PDF konnte nicht generiert werden, siehe Konsole für Details. Sind sie mit dem HSLU-Netz verbunden?');
         }
     } catch (error) {
-        console.error('Error during PDF creation:', error);
-        alert('An error occurred during PDF creation.');
+        console.error('Fehler während der PDF-Generation: ', error);
+        alert('Ein Fehler entstand während der Generation des PDFs.');
     }
 }

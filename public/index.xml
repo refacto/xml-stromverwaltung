@@ -7,9 +7,9 @@
   </head>
   <body>
     <div id="content">
-      <p id="description">Welcome to EnerCheck. A barebones XML/XSLT/FO baseline.</p>
+      <p id="description">Energiepreise der 7 BFS-Regionen der Schweiz</p>
       <div id="actions">
-        <button id="pdf">Generate PDF Report</button>
+        <button id="pdf">PDF-Auszug erstellen</button>
       </div>
     </div>
   </body>

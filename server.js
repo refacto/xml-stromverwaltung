@@ -79,27 +79,28 @@ app.post('/updateData', async (req, res) => {
         const parser = new DOMParser();
         const doc = parser.parseFromString(dbXmlStr, 'application/xml');
 
-        // Logic to update node - assuming structure: //item[@id="..."]
+        // Logic to update node - assuming structure: //region[@id="..."]
         const select = xpath.useNamespaces({});
-        const nodes = select(`//item[@id="${id}"]`, doc);
+        const nodes = select(`//region[@id="${id}"]`, doc);
         
         if (nodes.length > 0) {
-            const itemNode = nodes[0];
-            const historyNode = itemNode.getElementsByTagName('history')[0];
+            const regionNode = nodes[0];
+            const pricesNode = regionNode.getElementsByTagName('prices')[0];
             
-            const entryNode = doc.createElement('entry');
-            entryNode.setAttribute('date', date);
-            entryNode.appendChild(doc.createTextNode(value));
+            const priceNode = doc.createElement('price');
+            priceNode.setAttribute('date', date);
+            priceNode.setAttribute('unit', 'Rp/kWh');
+            priceNode.appendChild(doc.createTextNode(value));
             
-            if (historyNode) {
-                historyNode.appendChild(entryNode);
+            if (pricesNode) {
+                pricesNode.appendChild(priceNode);
             } else {
-                const newHistory = doc.createElement('history');
-                newHistory.appendChild(entryNode);
-                itemNode.appendChild(newHistory);
+                const newPrices = doc.createElement('prices');
+                newPrices.appendChild(priceNode);
+                regionNode.appendChild(newPrices);
             }
         } else {
-            return sendXmlResponse(res, 404, 'Item not found');
+            return sendXmlResponse(res, 404, 'Region not found');
         }
 
         const updatedXmlStr = new XMLSerializer().serializeToString(doc);

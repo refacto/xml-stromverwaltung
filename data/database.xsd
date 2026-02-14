@@ -3,18 +3,31 @@
   <xs:element name="enercheck">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="item" maxOccurs="unbounded">
+        <xs:element name="region" maxOccurs="7">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="name" type="xs:string"/>
-              <xs:element name="history">
+              <xs:element name="name">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:enumeration value="Région lémanique"/>
+                    <xs:enumeration value="Espace Mittelland"/>
+                    <xs:enumeration value="Nordwestschweiz"/>
+                    <xs:enumeration value="Zürich"/>
+                    <xs:enumeration value="Ostschweiz"/>
+                    <xs:enumeration value="Zentralschweiz"/>
+                    <xs:enumeration value="Ticino"/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="prices">
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="entry" minOccurs="0" maxOccurs="unbounded">
+                    <xs:element name="price" minOccurs="0" maxOccurs="unbounded">
                       <xs:complexType>
                         <xs:simpleContent>
-                          <xs:extension base="xs:string">
+                          <xs:extension base="xs:decimal">
                             <xs:attribute name="date" type="xs:date" use="required"/>
+                            <xs:attribute name="unit" type="xs:string" fixed="Rp/kWh"/>
                           </xs:extension>
                         </xs:simpleContent>
                       </xs:complexType>
@@ -23,7 +36,7 @@
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
-            <xs:attribute name="id" type="xs:string" use="required"/>
+            <xs:attribute name="id" type="xs:ID" use="required"/>
           </xs:complexType>
         </xs:element>
       </xs:sequence>

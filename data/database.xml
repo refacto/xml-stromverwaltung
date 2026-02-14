@@ -1,9 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <enercheck>
-  <item id="1">
-    <name>General Energy Check</name>
-    <history>
-      <entry date="2026-02-08">Initial Setup</entry>
-    </history>
-  </item>
+  <region id="CH01">
+    <name>Région lémanique</name>
+    <prices>
+      <price date="2026-01-01" unit="Rp/kWh">25.5</price>
+    </prices>
+  </region>
+  <region id="CH02">
+    <name>Espace Mittelland</name>
+    <prices>
+      <price date="2026-01-01" unit="Rp/kWh">24.8</price>
+    </prices>
+  </region>
+  <region id="CH03">
+    <name>Nordwestschweiz</name>
+    <prices>
+      <price date="2026-01-01" unit="Rp/kWh">26.2</price>
+    </prices>
+  </region>
+  <region id="CH04">
+    <name>Zürich</name>
+    <prices>
+      <price date="2026-01-01" unit="Rp/kWh">23.9</price>
+    </prices>
+  </region>
+  <region id="CH05">
+    <name>Ostschweiz</name>
+    <prices>
+      <price date="2026-01-01" unit="Rp/kWh">25.1</price>
+    </prices>
+  </region>
+  <region id="CH06">
+    <name>Zentralschweiz</name>
+    <prices>
+      <price date="2026-01-01" unit="Rp/kWh">24.5</price>
+    </prices>
+  </region>
+  <region id="CH07">
+    <name>Ticino</name>
+    <prices>
+      <price date="2026-01-01" unit="Rp/kWh">27.0</price>
+    </prices>
+  </region>
 </enercheck>
