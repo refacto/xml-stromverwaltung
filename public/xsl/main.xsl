@@ -31,8 +31,8 @@
             <iframe src="../data/database.xml" width="100%" height="300px"/>
           </section>
         </main>
-        
-        <script src="js/app.js"></script>
+
+        <script src="js/app.js"/>
       </body>
     </html>
   </xsl:template>
