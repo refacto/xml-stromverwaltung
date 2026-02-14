@@ -20,14 +20,9 @@
         </div>
 
         <div class="main">
-            <h2>Landing Page</h2>
-            <p>Welcome! Choose a section using the navigation above.</p>
+            <h2>Die Plattform, die das Stromnetz vernetzt.</h2>
+            <p>Willkommen bei Enercheck. Hier findest alles, was du für einen transparenten Stromkonsum brauchst. </p>
 
-            <div class="actions">
-                <button onclick="createPdf()">Generate PDF</button>
-            </div>
-
-            <div id="dashboard-mount">Loading dashboard...</div>
         </div>
 
         <script type="text/javascript" src="/js/app.js"></script>

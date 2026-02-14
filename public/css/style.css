@@ -1,16 +1,33 @@
 body {
   font-family: sans-serif;
-  max-width: 800px;
+  max-width: 1200px;
   margin: 20px auto;
   padding: 0 20px;
-  background-color: #f4f4f4;
+  background-color: #f0f4f8;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("../img/background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.25;          /* adjust 0.0 - 1.0 */
+  z-index: -1;
+  pointer-events: none;
 }
 
 header {
   background: #333;
-  color: #fff;
+  color: #f6b600;
   padding: 1rem;
   text-align: center;
+}
+
+.header h1 {
+  color: #ffb600;
 }
 
 main {
@@ -26,7 +43,7 @@ main {
 }
 
 .nav a {
-  color: #fff;
+  color: #f6b600;
   text-decoration: none;
   margin: 0 10px;
   padding: 6px 10px;

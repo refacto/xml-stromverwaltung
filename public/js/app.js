@@ -75,7 +75,71 @@ async function createPdf() {
     }
 }
 
+async function submitSupplierXml(xmlString) {
+    const response = await fetch('/lieferanten', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/xml' },
+        body: xmlString
+    });
+
+    const text = await response.text();
+    return { ok: response.ok, status: response.status, text };
+}
+
+function escapeXmlText(value) {
+    return String(value)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&apos;');
+}
+
+function initLieferantenForm() {
+    const form = document.getElementById('lieferanten-form');
+    if (!form) return;
+
+    const statusEl = document.getElementById('lieferanten-status');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const id = form.querySelector('[name="id"]').value.trim();
+        const name = form.querySelector('[name="name"]').value.trim();
+        const email = form.querySelector('[name="email"]').value.trim();
+        const phone = form.querySelector('[name="phone"]').value.trim();
+        const type = form.querySelector('[name="type"]').value.trim();
+
+        const parts = [];
+        parts.push(`<lieferant id="${escapeXmlText(id)}">`);
+        parts.push(`<name>${escapeXmlText(name)}</name>`);
+        if (email) parts.push(`<email>${escapeXmlText(email)}</email>`);
+        if (phone) parts.push(`<phone>${escapeXmlText(phone)}</phone>`);
+        if (type) parts.push(`<type>${escapeXmlText(type)}</type>`);
+        parts.push(`</lieferant>`);
+
+        const xml = parts.join('');
+
+        if (statusEl) statusEl.textContent = 'Saving...';
+
+        try {
+            const result = await submitSupplierXml(xml);
+            if (result.ok) {
+                if (statusEl) statusEl.textContent = 'Saved successfully.';
+                form.reset();
+            } else {
+                if (statusEl) statusEl.textContent = `Save failed (${result.status}). See console.`;
+                console.error('Supplier save failed:', result.text);
+            }
+        } catch (err) {
+            if (statusEl) statusEl.textContent = 'Save failed. See console.';
+            console.error(err);
+        }
+    });
+}
+
 // Load the dashboard as soon as the page is ready
 window.addEventListener('DOMContentLoaded', () => {
     renderDashboard();
+    initLieferantenForm();
 });

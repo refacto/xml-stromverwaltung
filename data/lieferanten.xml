@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lieferanten>
+    <lieferant id="SUP-001">
+        <name>Example Energy AG</name>
+        <email>info@example.com</email>
+        <phone>+41 44 123 45 67</phone>
+        <type>strom</type>
+    </lieferant>
+</lieferanten>
