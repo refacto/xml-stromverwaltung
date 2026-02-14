@@ -4,42 +4,84 @@
     <name>Région lémanique</name>
     <prices>
       <price date="2026-01-01" unit="Rp/kWh">25.5</price>
+      <price date="2026-01-02" unit="Rp/kWh">30.1</price>
+      <price date="2026-01-03" unit="Rp/kWh">21.2</price>
+      <price date="2026-01-04" unit="Rp/kWh">22.3</price>
+      <price date="2026-01-05" unit="Rp/kWh">27.7</price>
+      <price date="2026-01-06" unit="Rp/kWh">28.2</price>
+      <price date="2026-01-07" unit="Rp/kWh">22.1</price>
     </prices>
   </region>
   <region id="CH02">
     <name>Espace Mittelland</name>
     <prices>
-      <price date="2026-01-01" unit="Rp/kWh">24.8</price>
+      <price date="2026-01-01" unit="Rp/kWh">22.3</price>
+      <price date="2026-01-02" unit="Rp/kWh">28.2</price>
+      <price date="2026-01-03" unit="Rp/kWh">10.2</price>
+      <price date="2026-01-04" unit="Rp/kWh">20.5</price>
+      <price date="2026-01-05" unit="Rp/kWh">30.3</price>
+      <price date="2026-01-06" unit="Rp/kWh">28.1</price>
+      <price date="2026-01-07" unit="Rp/kWh">22.1</price>
     </prices>
   </region>
   <region id="CH03">
     <name>Nordwestschweiz</name>
     <prices>
-      <price date="2026-01-01" unit="Rp/kWh">26.2</price>
+      <price date="2026-01-01" unit="Rp/kWh">21.3</price>
+      <price date="2026-01-02" unit="Rp/kWh">25.2</price>
+      <price date="2026-01-03" unit="Rp/kWh">30.2</price>
+      <price date="2026-01-04" unit="Rp/kWh">18.5</price>
+      <price date="2026-01-05" unit="Rp/kWh">20.3</price>
+      <price date="2026-01-06" unit="Rp/kWh">22.1</price>
+      <price date="2026-01-07" unit="Rp/kWh">21.1</price>
     </prices>
   </region>
   <region id="CH04">
     <name>Zürich</name>
     <prices>
-      <price date="2026-01-01" unit="Rp/kWh">23.9</price>
+      <price date="2026-01-01" unit="Rp/kWh">20.3</price>
+      <price date="2026-01-02" unit="Rp/kWh">22.2</price>
+      <price date="2026-01-03" unit="Rp/kWh">31.2</price>
+      <price date="2026-01-04" unit="Rp/kWh">12.5</price>
+      <price date="2026-01-05" unit="Rp/kWh">26.3</price>
+      <price date="2026-01-06" unit="Rp/kWh">27.1</price>
+      <price date="2026-01-07" unit="Rp/kWh">22.1</price>
     </prices>
   </region>
   <region id="CH05">
     <name>Ostschweiz</name>
     <prices>
-      <price date="2026-01-01" unit="Rp/kWh">25.1</price>
+      <price date="2026-01-01" unit="Rp/kWh">21.2</price>
+      <price date="2026-01-02" unit="Rp/kWh">28.2</price>
+      <price date="2026-01-03" unit="Rp/kWh">34.2</price>
+      <price date="2026-01-04" unit="Rp/kWh">15.5</price>
+      <price date="2026-01-05" unit="Rp/kWh">22.3</price>
+      <price date="2026-01-06" unit="Rp/kWh">21.1</price>
+      <price date="2026-01-07" unit="Rp/kWh">28.1</price>
     </prices>
   </region>
   <region id="CH06">
     <name>Zentralschweiz</name>
     <prices>
-      <price date="2026-01-01" unit="Rp/kWh">24.5</price>
+      <price date="2026-01-01" unit="Rp/kWh">25.2</price>
+      <price date="2026-01-02" unit="Rp/kWh">29.2</price>
+      <price date="2026-01-03" unit="Rp/kWh">32.2</price>
+      <price date="2026-01-04" unit="Rp/kWh">13.5</price>
+      <price date="2026-01-05" unit="Rp/kWh">28.3</price>
+      <price date="2026-01-06" unit="Rp/kWh">29.1</price>
+      <price date="2026-01-07" unit="Rp/kWh">20.1</price>
     </prices>
   </region>
   <region id="CH07">
     <name>Ticino</name>
     <prices>
-      <price date="2026-01-01" unit="Rp/kWh">27.0</price>
+      <price date="2026-01-01" unit="Rp/kWh">23.4</price>
+      <price date="2026-01-02" unit="Rp/kWh">21.2</price>
+      <price date="2026-01-03" unit="Rp/kWh">32.2</price>
+      <price date="2026-01-04" unit="Rp/kWh">13.5</price>
+      <price date="2026-01-05" unit="Rp/kWh">24.3</price>
+      <price date="2026-01-06" unit="Rp/kWh">25.1</price>
+      <price date="2026-01-07" unit="Rp/kWh">26.1</price>
     </prices>
   </region>
 </enercheck>
