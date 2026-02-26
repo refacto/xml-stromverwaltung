@@ -88,28 +88,44 @@ app.post('/convertToPdf', async (req, res) => {
 });
 
 app.post('/lieferanten', async (req, res) => {
-    const xmlSnippet = req.body; // expected: <lieferant ...>...</lieferant>
-    const suppliersPath = path.resolve(__dirname, 'data', 'lieferanten.xml');
-    const xsdPath = path.resolve(__dirname, 'data', 'lieferanten.xsd');
-
-    try {
-        if (!xmlSnippet || xmlSnippet.trim() === '') {
-            return sendXmlResponse(res, 400, 'No XML provided');
+    let supplierData;
+    if (req.is('application/x-www-form-urlencoded')) {
+        const { region, password, type, date, price } = req.body;
+        if (!region || !password || !type || !date || !price) {
+            return sendXmlResponse(res, 400, 'Missing form fields');
         }
-
+        supplierData = { region, password, type, date, price };
+    } else {
+        // Handle XML snippet as before
+        const xmlSnippet = req.body;
+        if (typeof xmlSnippet !== 'string' || xmlSnippet.trim() === '') {
+            return sendXmlResponse(res, 400, 'No XML provided or invalid format');
+        }
         const parser = new DOMParser();
-
-        // Parse snippet safely by wrapping it
         const wrappedSnippetDoc = parser.parseFromString(
             `<?xml version="1.0" encoding="UTF-8"?><lieferanten>${xmlSnippet}</lieferanten>`,
             'application/xml'
         );
-
         const snippetSupplier = wrappedSnippetDoc.getElementsByTagName('lieferant')[0];
         if (!snippetSupplier) {
             return sendXmlResponse(res, 400, 'Must provide a <lieferant> element');
         }
+        
+        const getVal = (tagName) => snippetSupplier.getElementsByTagName(tagName)[0]?.textContent || '';
+        supplierData = {
+            region: getVal('region'),
+            password: getVal('password'),
+            type: getVal('type'),
+            date: getVal('date'),
+            price: getVal('price')
+        };
+    }
 
+    const suppliersPath = path.resolve(__dirname, 'data', 'lieferanten.xml');
+    const xsdPath = path.resolve(__dirname, 'data', 'lieferanten.xsd');
+
+    try {
+        const parser = new DOMParser();
         if (!fs.existsSync(suppliersPath)) {
             fs.writeFileSync(suppliersPath, `<?xml version="1.0" encoding="UTF-8"?><lieferanten/>`, 'utf-8');
         }
@@ -124,9 +140,13 @@ app.post('/lieferanten', async (req, res) => {
             return sendXmlResponse(res, 500, 'Invalid suppliers storage file (expected <lieferanten>)');
         }
 
-        // Correctly import the node into the target document
-        const supplierToAppend = suppliersDoc.importNode(snippetSupplier, true);
-        suppliersRoot.appendChild(supplierToAppend);
+        const newSupplier = suppliersDoc.createElement('lieferant');
+        for (const [key, value] of Object.entries(supplierData)) {
+            const el = suppliersDoc.createElement(key);
+            el.appendChild(suppliersDoc.createTextNode(value));
+            newSupplier.appendChild(el);
+        }
+        suppliersRoot.appendChild(newSupplier);
 
         const updatedXmlStr = new XMLSerializer().serializeToString(suppliersDoc);
 
@@ -168,8 +188,8 @@ app.post('/validateSuppliers', async (req, res) => {
     const xsdPath = path.resolve(__dirname, 'data', 'lieferanten.xsd');
 
     try {
-        if (!xmlSnippet || xmlSnippet.trim() === '') {
-            return sendXmlResponse(res, 400, 'No XML provided');
+        if (typeof xmlSnippet !== 'string' || xmlSnippet.trim() === '') {
+            return sendXmlResponse(res, 400, 'No XML provided or invalid format');
         }
 
         const xsdXmlStr = fs.readFileSync(xsdPath, 'utf-8');
