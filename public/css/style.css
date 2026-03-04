@@ -1,3 +1,4 @@
+/* Basis-Design */
 body {
   font-family: sans-serif;
   max-width: 1200px;
@@ -14,7 +15,7 @@ body::before {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.25;          /* adjust 0.0 - 1.0 */
+  opacity: 0.25;
   z-index: -1;
   pointer-events: none;
 }
@@ -26,10 +27,6 @@ header {
   text-align: center;
 }
 
-.header h1 {
-  color: #ffb600;
-}
-
 main {
   background: #fff;
   padding: 20px;
@@ -37,7 +34,6 @@ main {
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-/* Navigation */
 .nav {
   margin-top: 12px;
   display: flex;
@@ -51,20 +47,16 @@ main {
   padding: 8px 16px;
   border: 2px solid #f6b600;
   border-radius: 6px;
-  background-color: transparent;
-  transition: all 0.3s ease;
   font-weight: bold;
+  transition: 0.3s;
 }
 
 .nav a:hover {
-  background-color: #f6b600;
+  background: #f6b600;
   color: #333;
 }
 
-/* ... existing code ... */
-.actions {
-  margin: 20px 0;
-}
+.actions { margin: 20px 0; }
 
 button, .button-link {
   padding: 10px 20px;
@@ -74,39 +66,38 @@ button, .button-link {
   cursor: pointer;
   text-decoration: none;
   display: inline-block;
-  font-family: inherit;
-  font-size: 100%;
-  line-height: 1.15;
-  margin: 0;
-  vertical-align: middle;
 }
 
-button:hover, .button-link:hover {
-  background: #0056b3;
-}
-
-iframe {
-  border: 1pt solid #ccc;
-  margin-top: 10px;
-}
-
-.region-shape {
-  fill: #444;
-  stroke: #fff;
-  cursor: pointer;
+/* SVG Styling */
+.region-shape { 
+  fill: rgba(128, 128, 128, 0.01); /* Fast unsichtbar, aber klickbar */
+  stroke: white;
+  stroke-width: 0.5;
   transition: fill 0.3s;
 }
 
-.region-shape:hover {
-  fill: #ffd700;
+.region-shape:hover { 
+  fill: rgba(0, 120, 215, 0.6); 
+  cursor: pointer;
 }
 
 
-.region-detail { display: none; }
-.region-detail:target { display: block !important; }
+.region-detail {
+  display: none;
+  animation: fadeIn 0.4s ease-out;
+}
 
 
-iframe {
-  border: 1pt solid #ccc;
-  margin-top: 10px;
+.region-detail:target {
+  display: block !important;
+}
+
+
+#details-view:has(.region-detail:target) #placeholder {
+  display: none;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }

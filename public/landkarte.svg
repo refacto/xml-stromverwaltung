@@ -11,7 +11,7 @@
         }
     </style>
 
-    <a href="#region-1" target="daten-anzeige">
+    <a href="#region-1" target="_parent">
        <polygon points="
         143,214 140,218 135,222 132,226 128,226 
         127,219 122,218 117,218 114,218 113,214 
@@ -52,7 +52,7 @@
     " class="region-shape" />
     </a>
 
-    <a href="#region-2" target="daten-anzeige">
+    <a href="#region-2" target="_parent">
         <polygon points="
         117,218 111,202 124,187 109,176 102,158 
         81,168 78,157 122,119 137,98 122,97 
@@ -68,7 +68,7 @@
     " class="region-shape" />
     </a>
 
-    <a href="#region-3" target="daten-anzeige">
+    <a href="#region-3" target="_parent">
         <polygon points="
         199,66 195,65 188,67 182,70 181,75 
         184,76 184,82 178,86 176,92 192,87 
@@ -80,7 +80,7 @@
     " class="region-shape" />
     </a>
 
-    <a href="#region-4" target="daten-anzeige">
+    <a href="#region-4" target="_parent">
         <polygon points="
         276,59 271,69 262,80 266,97 269,115 
         281,118 287,122 293,123 296,119 304,117 
@@ -92,7 +92,7 @@
     " class="region-shape" />
     </a>
 
-    <a href="#region-5" target="daten-anzeige">
+    <a href="#region-5" target="_parent">
         <polygon points="
                 376,136 385,83 347,58 287,35 270,50 
                 301,59 319,109 319,144 313,174 296,194 
@@ -104,7 +104,7 @@
             " class="region-shape" />
     </a>
 
-    <a href="#region-6" target="daten-anzeige">
+    <a href="#region-6" target="_parent">
         <polygon points="
         270,185 270,191 267,196 268,201 268,207 
         270,213 275,214 279,213 278,208 282,207 
@@ -125,7 +125,7 @@
     " class="region-shape" />
     </a>
 
-    <a href="#region-7" target="daten-anzeige">
+    <a href="#region-7" target="_parent">
         <polygon points="
         274,232 275,224 269,223 266,220 272,216 
         275,214 278,211 281,206 289,207 295,207 
