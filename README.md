@@ -72,14 +72,14 @@ The server runs on `http://localhost:3000` by default. Override the port with th
 
 ## API Endpoints
 
-All request/response bodies use XML unless noted.
+All request/response bodies use XML.
 
 ### `POST /updateData`
 Add a price entry for a Swiss region.
 
-Request body (JSON):
-```json
-{ "id": "CH01", "value": "25.5", "date": "2026-01-01" }
+Request body (XML):
+```xml
+<update><id>CH01</id><value>25.5</value><date>2026-01-01</date></update>
 ```
 
 ### `POST /lieferanten`
