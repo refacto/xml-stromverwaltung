@@ -10,7 +10,7 @@
       <price date="2026-01-05" unit="Rp/kWh">27.7</price>
       <price date="2026-01-06" unit="Rp/kWh">28.2</price>
       <price date="2026-01-07" unit="Rp/kWh">22.1</price>
-    <price date="2026-03-05" unit="Rp/kWh">29.9</price></prices>
+    </prices>
   </region>
   <region id="CH02">
     <name>Espace Mittelland</name>
