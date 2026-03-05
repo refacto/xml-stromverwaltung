@@ -64,9 +64,105 @@ app.get('/kunden', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'public', 'pages', 'kunden.xml'));
 });
 
-app.get('/forum', (req, res) => {
-    res.set('Content-Type', 'application/xhtml+xml');
-    res.sendFile(path.resolve(__dirname, 'public', 'pages', 'forum.xml'));
+app.get('/forum', async (req, res) => {
+    try {
+        const forumPath = path.resolve(__dirname, 'data', 'forum.xml');
+        const xslPath = path.resolve(__dirname, 'public', 'xsl', 'forum.xsl');
+
+        let forumXmlStr = fs.existsSync(forumPath)
+            ? fs.readFileSync(forumPath, 'utf-8')
+            : '<?xml version="1.0" encoding="UTF-8"?><forum/>';
+
+        if (req.query.status) {
+            const parser = new DOMParser();
+            const forumDoc = parser.parseFromString(forumXmlStr, 'application/xml');
+            const root = forumDoc.documentElement;
+            const statusEl = forumDoc.createElement('pageStatus');
+            statusEl.appendChild(forumDoc.createTextNode(req.query.status));
+            root.insertBefore(statusEl, root.firstChild);
+            if (req.query.msg) {
+                const msgEl = forumDoc.createElement('pageMessage');
+                msgEl.appendChild(forumDoc.createTextNode(req.query.msg));
+                root.insertBefore(msgEl, root.childNodes[1] || null);
+            }
+            forumXmlStr = new XMLSerializer().serializeToString(forumDoc);
+        }
+
+        const xslStr = fs.readFileSync(xslPath, 'utf-8');
+        const xslt = new Xslt();
+        const xmlParser = new XmlParser();
+        const result = await xslt.xsltProcess(
+            xmlParser.xmlParse(forumXmlStr),
+            xmlParser.xmlParse(xslStr)
+        );
+        res.set('Content-Type', 'text/html');
+        res.send(result);
+    } catch (error) {
+        console.error('Forum rendering failed:', error);
+        sendXmlResponse(res, 500, 'Error rendering forum page');
+    }
+});
+
+app.post('/forum', async (req, res) => {
+    const { name, title, message } = req.body;
+    const forumPath = path.resolve(__dirname, 'data', 'forum.xml');
+    const xsdPath = path.resolve(__dirname, 'data', 'forum.xsd');
+
+    try {
+        const missing = [];
+        if (!name || !name.trim()) missing.push('Name');
+        if (!title || !title.trim()) missing.push('Betreff');
+        if (!message || !message.trim()) missing.push('Nachricht');
+
+        if (missing.length > 0) {
+            return res.redirect(`/forum?status=error&msg=${encodeURIComponent('Pflichtfelder fehlen: ' + missing.join(', '))}`);
+        }
+
+        if (name.trim().length > 50 || title.trim().length > 100 || message.trim().length > 500) {
+            return res.redirect(`/forum?status=error&msg=${encodeURIComponent('Feldlänge überschritten')}`);
+        }
+
+        const escapeXml = (str) => String(str)
+            .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
+
+        const today = new Date().toISOString().slice(0, 10);
+        const parser = new DOMParser();
+
+        if (!fs.existsSync(forumPath)) {
+            fs.writeFileSync(forumPath, '<?xml version="1.0" encoding="UTF-8"?><forum/>', 'utf-8');
+        }
+
+        const forumXmlStr = fs.readFileSync(forumPath, 'utf-8');
+        const xsdXmlStr = fs.readFileSync(xsdPath, 'utf-8');
+
+        const snippetDoc = parser.parseFromString(
+            `<?xml version="1.0" encoding="UTF-8"?><forum><post><name>${escapeXml(name.trim())}</name><title>${escapeXml(title.trim())}</title><message>${escapeXml(message.trim())}</message><date>${today}</date></post></forum>`,
+            'application/xml'
+        );
+        const snippetPost = snippetDoc.getElementsByTagName('post')[0];
+
+        const forumDoc = parser.parseFromString(forumXmlStr, 'application/xml');
+        forumDoc.documentElement.appendChild(forumDoc.importNode(snippetPost, true));
+
+        const updatedXmlStr = new XMLSerializer().serializeToString(forumDoc);
+
+        const validationResult = await validateXML({
+            xml: [{ fileName: 'forum.xml', contents: String(updatedXmlStr) }],
+            schema: [String(xsdXmlStr)]
+        });
+
+        if (!validationResult.valid) {
+            const { errorMsg } = parseValidationErrors(validationResult);
+            return res.redirect(`/forum?status=error&msg=${encodeURIComponent(errorMsg)}`);
+        }
+
+        fs.writeFileSync(forumPath, updatedXmlStr, 'utf-8');
+        return res.redirect('/forum?status=ok');
+    } catch (error) {
+        console.error('Saving forum post failed:', error);
+        return res.redirect(`/forum?status=error&msg=${encodeURIComponent('Interner Fehler')}`);
+    }
 });
 
 app.get('/charts', (req, res) => {
