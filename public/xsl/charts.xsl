@@ -39,20 +39,20 @@
         </style>
       </head>
       <body>
-        <header>
+        <div class="header">
           <h1><xsl:value-of select="xhtml:head/xhtml:title" /></h1>
-          <nav class="nav">
+          <div class="nav">
             <a href="/">Home</a>
             <a href="/lieferanten">Lieferanten</a>
             <a href="/kunden">Kunden</a>
             <a href="/forum">Forum</a>
             <a href="/charts">Preisdiagramme</a>
-          </nav>
-        </header>
-        <main>
+          </div>
+        </div>
+        <div class="main">
           <!-- Load the database XML -->
           <xsl:apply-templates select="document('../../data/database.xml')/enercheck/region" />
-        </main>
+        </div>
       </body>
     </html>
   </xsl:template>
