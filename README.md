@@ -20,12 +20,6 @@ Start the server:
 npm start
 ```
 
-For development with auto-reload:
-
-```bash
-npm run dev
-```
-
 The server runs on `http://localhost:3000` by default. Override the port with the `ENER_CHECK_PORT` environment variable.
 
 ## Project Structure
