@@ -57,9 +57,9 @@
                 </div>
                 <div style="flex: 1; background: #fdfdfd; padding: 15px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
                   <h3 style="font-family: sans-serif;">Kraftwerks-Details</h3>
-                  <object type="text/html" data="/kraftwerke" style="width: 100%; height: 500px; border: none;">
-                    <p>Ihr Browser unterstützt kein eingebettetes HTML.</p>
-                  </object>
+                  <div id="daten-anzeige" style="width: 100%; min-height: 500px; border: 1pt solid #ccc; margin-top: 10px; overflow-y: auto; padding: 10px; box-sizing: border-box;">
+                    <p>Wählen Sie eine Region aus der Karte.</p>
+                  </div>
                 </div>
               </div>
             </div>

@@ -120,9 +120,45 @@ function initLieferantenForm() {
     }
 }
 
+function initKraftwerkePanel() {
+    const panel = document.getElementById('daten-anzeige');
+    if (!panel) return;
+
+    let regions = null;
+
+    async function ensureLoaded() {
+        if (regions) return;
+        const response = await fetch('/kraftwerke');
+        const text = await response.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(text, 'application/xhtml+xml');
+
+        regions = {};
+        doc.querySelectorAll('.region-detail').forEach(function(el) {
+            regions[el.id] = el;
+        });
+    }
+
+    window.addEventListener('message', async function(event) {
+        if (typeof event.data !== 'string' || !event.data.startsWith('region-')) return;
+        try {
+            await ensureLoaded();
+            const el = regions[event.data];
+            if (!el) return;
+            while (panel.firstChild) panel.removeChild(panel.firstChild);
+            const clone = document.importNode(el, true);
+            clone.style.display = 'block';
+            panel.appendChild(clone);
+        } catch (e) {
+            console.error('Kraftwerke panel error:', e);
+        }
+    });
+}
+
 // Load the dashboard as soon as the page is ready
 if (typeof window !== 'undefined' && window.document) {
     window.addEventListener('DOMContentLoaded', () => {
         initLieferantenForm();
+        initKraftwerkePanel();
     });
 }

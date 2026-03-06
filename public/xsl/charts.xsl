@@ -15,7 +15,7 @@
       <head>
         <title><xsl:value-of select="xhtml:head/xhtml:title" /></title>
         <link rel="stylesheet" href="css/style.css" />
-        <style>
+        <style type="text/css">
           .chart-container {
             margin-bottom: 50px;
             padding: 20px;

@@ -53,7 +53,7 @@
                     </div>
                     <div>
                         <label for="forum-message">Nachricht</label><br/>
-                        <textarea id="forum-message" name="message" maxlength="500" rows="4" cols="50"><xsl:text> </xsl:text></textarea>
+                        <textarea id="forum-message" name="message" rows="4" cols="50"><xsl:text> </xsl:text></textarea>
                         <br/><br/>
                     </div>
                     <div class="actions">
