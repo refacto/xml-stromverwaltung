@@ -24,7 +24,7 @@ body::before {
   color: #ffb600;
 }
 
-header {
+.header {
   background: #333;
   color: #f6b600;
   padding: 1rem;
@@ -35,7 +35,7 @@ header {
   color: #ffb600;
 }
 
-main {
+.main {
   background: #fff;
   padding: 20px;
   margin-top: 20px;
@@ -106,10 +106,6 @@ button:hover, .button-link:hover {
   color: #333;
 }
 
-iframe {
-  border: 1pt solid #ccc;
-  margin-top: 10px;
-}
 
 .region-shape {
   fill: #444;
@@ -126,3 +122,7 @@ iframe {
 .region-detail { display: none; }
 .region-detail:target { display: block !important; }
 .region-detail:target ~ .select-hint { display: none; }
+
+#daten-anzeige table { border-collapse: collapse; width: 100%; }
+#daten-anzeige th, #daten-anzeige td { border: 1px solid #ccc; padding: 6px 10px; text-align: left; }
+#daten-anzeige th { background: #f0f0f0; }

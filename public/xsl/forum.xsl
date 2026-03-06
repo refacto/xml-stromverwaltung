@@ -11,17 +11,17 @@
             <link rel="stylesheet" href="/css/style.css"/>
         </head>
         <body>
-            <header>
+            <div class="header">
                 <h1>EnerCheck</h1>
-                <nav class="nav">
+                <div class="nav">
                     <a href="/">Home</a>
                     <a href="/lieferanten">Lieferanten</a>
                     <a href="/kunden">Kunden</a>
                     <a href="/forum">Forum</a>
                     <a href="/charts">Preisdiagramme</a>
-                </nav>
-            </header>
-            <main>
+                </div>
+            </div>
+            <div class="main">
                 <h2>Forum</h2>
                 <p>
                     Willkommen beim Forum!<br/>
@@ -53,7 +53,7 @@
                     </div>
                     <div>
                         <label for="forum-message">Nachricht</label><br/>
-                        <textarea id="forum-message" name="message" maxlength="500" rows="4" cols="50"><xsl:text> </xsl:text></textarea>
+                        <textarea id="forum-message" name="message" rows="4" cols="50"><xsl:text> </xsl:text></textarea>
                         <br/><br/>
                     </div>
                     <div class="actions">
@@ -79,8 +79,8 @@
                         <p>Noch keine Beiträge vorhanden.</p>
                     </xsl:otherwise>
                 </xsl:choose>
-            </main>
-            <script src="/js/app.js"><xsl:text> </xsl:text></script>
+            </div>
+            <script type="text/javascript" src="/js/app.js"><xsl:text> </xsl:text></script>
         </body>
         </html>
     </xsl:template>

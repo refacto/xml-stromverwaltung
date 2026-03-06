@@ -16,18 +16,18 @@
         <link rel="stylesheet" href="/css/style.css" />
       </head>
       <body>
-        <header>
+        <div class="header">
           <h1><xsl:value-of select="xhtml:head/xhtml:title" /></h1>
-          <nav class="nav">
+          <div class="nav">
             <a href="/">Home</a>
             <a href="/lieferanten">Lieferanten</a>
             <a href="/kunden">Kunden</a>
             <a href="/forum">Forum</a>
             <a href="/charts">Preisdiagramme</a>
-          </nav>
-        </header>
+          </div>
+        </div>
 
-        <main>
+        <div class="main">
           <xsl:copy-of select="xhtml:body/xhtml:div[@class='main']/*" />
           <xsl:copy-of select="xhtml:body/xhtml:div[@id='content']/*" />
 
@@ -41,30 +41,32 @@
 
 
           <xsl:if test="//xhtml:div[@class='main']/xhtml:h2 = 'Lieferanten'">
-            <section id="kraftwerke-integration" style="margin-top: 40px; border-top: 2px solid #eee; padding-top: 20px;">
+            <div id="kraftwerke-integration" style="margin-top: 40px; border-top: 2px solid #eee; padding-top: 20px;">
               <h2 style="font-family: sans-serif; color: #333; text-align: center;">Regionale Kraftwerks-Analyse</h2>
-              
+
               <div id="stats-container" style="display: flex; gap: 20px; align-items: flex-start;">
-                
+
                 <div style="flex: 1; background: #fdfdfd; padding: 15px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
                   <h3 style="font-family: sans-serif;">Region auswählen</h3>
-                  
+
                   <div class="map-wrapper" style="position: relative; width: 100%; border: 1px solid #ccc;">
-<img src="/img/Landkartexsd.png" style="width: 100%; display: block;" alt="Hintergrundkarte" />                    <object data="/landkarte.svg" type="image/svg+xml" 
+<img src="/img/Landkartexsd.png" style="width: 100%; display: block;" alt="Hintergrundkarte" />                    <object data="/landkarte.svg" type="image/svg+xml"
                             style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.4; pointer-events: auto;">
                     </object>
                   </div>
                 </div>
                 <div style="flex: 1; background: #fdfdfd; padding: 15px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
                   <h3 style="font-family: sans-serif;">Kraftwerks-Details</h3>
-                  <iframe name="daten-anzeige" src="/kraftwerke" style="width: 100%; height: 500px; border: none;"></iframe>
+                  <div id="daten-anzeige" style="width: 100%; min-height: 500px; border: 1pt solid #ccc; margin-top: 10px; overflow-y: auto; padding: 10px; box-sizing: border-box;">
+                    <p>Wählen Sie eine Region aus der Karte.</p>
+                  </div>
                 </div>
               </div>
-            </section>
+            </div>
           </xsl:if>
-        </main>
-        
-        <script src="/js/app.js"></script>
+        </div>
+
+        <script type="text/javascript" src="/js/app.js"></script>
       </body>
     </html>
   </xsl:template>
