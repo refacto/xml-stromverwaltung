@@ -15,7 +15,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/data', express.static(path.join(__dirname, 'data')));
 
 app.use(express.text({ type: ['application/xml', 'text/plain', 'text/xml'], limit: '10mb' }));
-app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 const sendXmlResponse = (res, status, message, data = null) => {
@@ -344,15 +343,24 @@ app.post('/validateSuppliers', async (req, res) => {
 
 // Data update route with validation
 app.post('/updateData', async (req, res) => {
-    const { id, value, date } = req.body;
+    const xmlBody = req.body;
     const dbPath = path.resolve(__dirname, 'data', 'database.xml');
     const xsdPath = path.resolve(__dirname, 'data', 'database.xsd');
 
     try {
+        if (!xmlBody || xmlBody.trim() === '') {
+            return sendXmlResponse(res, 400, 'No XML provided');
+        }
+
+        const parser = new DOMParser();
+        const bodyDoc = parser.parseFromString(xmlBody, 'application/xml');
+        const id = bodyDoc.getElementsByTagName('id')[0]?.textContent?.trim();
+        const value = bodyDoc.getElementsByTagName('value')[0]?.textContent?.trim();
+        const date = bodyDoc.getElementsByTagName('date')[0]?.textContent?.trim();
+
         const dbXmlStr = fs.readFileSync(dbPath, 'utf-8');
         const xsdXmlStr = fs.readFileSync(xsdPath, 'utf-8');
-        
-        const parser = new DOMParser();
+
         const doc = parser.parseFromString(dbXmlStr, 'application/xml');
 
         // Logic to update node - assuming structure: //region[@id="..."]
